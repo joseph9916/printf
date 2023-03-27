@@ -65,22 +65,17 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			/**
-			 * if (format[len + 1]  == 'd')
-				len = print_decimal_number(format, len, va_arg(ap, int));
-				*/
-			if (*(format + 1) == 'c')
+			if (format[1] == 'c')
 				i = print_char(va_arg(ap, int));
-			if (*(format + 1) == 's')
+			if (format[1] == 's')
 				i = print_str(va_arg(ap, char *));
-			/**
-			 * else if (format[len + 1] == 'x')
-				len = print_hexadecimal_number(format, len, va_arg(ap, int));
-			else if (format[len + 1] == 'X')
-				len = print_hexadecimal_number_cap(format, len, va_arg(ap, int));
-			else if (format[len + 1] == 'o')
-				len = print_octal_number(format, len, va_arg(ap, int));
-				*/
+			if (format[1] == '%')
+			{
+				_ptchar('%');
+				i = 1;
+			}
+			if (format[1] == '\0')
+				return (len);
 			format += 2;
 			len += i;
 		}
