@@ -8,5 +8,6 @@ int print_char(int c);
 int print_str(char *str);
 int print_percent(void);
 int print_normally(const char *format);
+int print_binary(int n);
 
 #endif

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 /**
- * print_number - Takes a number as input and prints it with putchar
+ * print_decimal_number - Takes a number as input and prints it with putchar
  * @n: Input integer
  * Return: 0 Always (Success)
  */
@@ -13,7 +13,7 @@ int print_decimal_number(int n)
 {
 	/*AN interger to get the integer division of i*/
 	int i = 0, j = 10;
-	
+
 	if (n < 0)
 	{
 		_ptchar('-');
@@ -108,12 +108,14 @@ int _printf(const char *format, ...)
 				i = print_char(va_arg(ap, int));
 			else if (format[1] == 's')
 				i = print_str(va_arg(ap, char *));
-			else if (format[1] == 'd')
+			else if (format[1] == 'd' || format[1] == 'i')
 				i = print_decimal_number(va_arg(ap, int));
 			else if (format[1] == '\0')
 				return (len);
 			else if (format[1] == '%')
 				i = print_percent();
+			else if (format[1] == 'b')
+				i = print_binary(va_arg(ap, int));
 			else
 				i = print_normally(format);
 			format += 2;
